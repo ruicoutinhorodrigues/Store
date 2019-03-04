@@ -1,6 +1,5 @@
 ﻿using Store.Web.Data.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +9,7 @@ namespace Store.Web.Data
     {
         private readonly DataContext context;
 
-        private Random random;
+        private readonly Random random;
 
         public SeedDb(DataContext context)
         {
