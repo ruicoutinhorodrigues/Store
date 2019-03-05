@@ -10,7 +10,7 @@ using Store.Web.Data;
 namespace Store.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190303115458_InitialDb")]
+    [Migration("20190305194412_InitialDb")]
     partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,19 @@ namespace Store.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Store.Web.Data.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("Store.Web.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -29,11 +42,15 @@ namespace Store.Web.Migrations
 
                     b.Property<string>("ImageUrl");
 
-                    b.Property<DateTime>("LastPurchase");
+                    b.Property<bool>("IsAvailable");
 
-                    b.Property<DateTime>("LastSale");
+                    b.Property<DateTime?>("LastPurchase");
 
-                    b.Property<string>("Name");
+                    b.Property<DateTime?>("LastSale");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<decimal>("Price");
 
