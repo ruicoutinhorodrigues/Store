@@ -23,12 +23,6 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.LastPurchase)
         </dt>
         <dd>
@@ -51,6 +45,13 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Stock)
+        </dd>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Url.Content(Model.ImageUrl)" alt="image"
+                     style="width:300px;height:450px;max-width:100%;height:auto" />
+            }
         </dd>
     </dl>
 </div>
